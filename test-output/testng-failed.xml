@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.TestCase4_GetSingleUser">
+      <class name="tests.TestCase5_SchemaValidaton_SingleUser">
         <methods>
-          <include name="testUntitled"/>
+          <include name="schemaValidation"/>
         </methods>
-      </class> <!-- tests.TestCase4_GetSingleUser -->
+      </class> <!-- tests.TestCase5_SchemaValidaton_SingleUser -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

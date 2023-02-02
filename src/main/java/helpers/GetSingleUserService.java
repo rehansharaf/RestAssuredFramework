@@ -3,14 +3,17 @@ package helpers;
 import static io.restassured.RestAssured.basePath;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
-
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import constants.Endpoints;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 import models.getsingleuser.GetSingleUser;
 import utils.ConfigReader;
 import static org.hamcrest.Matchers.*;
+
+import java.io.File;
+
 import static org.hamcrest.MatcherAssert.*;
 
 public class GetSingleUserService {
@@ -32,6 +35,20 @@ public class GetSingleUserService {
 		assertThat(response.body().jsonPath().getInt("data.id"), is(notNullValue()));
 		singleUser = response.as(GetSingleUser.class);
 		return singleUser;
+	}
+	
+	
+	public ValidatableResponse getSingleUserSchemaValidation() {
+		
+		ValidatableResponse response = given().
+			contentType("application/json").
+			pathParam("id", 2).
+		when().
+			get(Endpoints.SINGLE_USER).then().statusCode(200);
+			
+		return response;
+		
+
 	}
 	
 }
